@@ -19,16 +19,12 @@
 </head>
 
 <body class="antialiased">
-    <h1>Welcome to Laravel</h1>
-
-    <ul>
-        <li>
-            <a href="/info">Info</a>
-        </li>
-        <li>
-            <a href="/news">News</a>
-        </li>
-    </ul>
+    <h1>Info</h1>
+    <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium quibusdam ad maxime eos, eligendi distinctio molestias rerum velit tenetur commodi iusto necessitatibus animi voluptate corrupti odit libero quam iure illum vel amet vero aut? Officia aliquam quidem magnam id quae.
+    </p>
+    
+    <button><a href="/">Back</a></button>
 </body>
 
 </html>
