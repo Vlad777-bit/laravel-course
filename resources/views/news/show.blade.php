@@ -19,12 +19,18 @@
 </head>
 
 <body class="antialiased">
-    <h1>Info</h1>
-    <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium quibusdam ad maxime eos, eligendi distinctio molestias rerum velit tenetur commodi iusto necessitatibus animi voluptate corrupti odit libero quam iure illum vel amet vero aut? Officia aliquam quidem magnam id quae.
-    </p>
-    
-    <button><a href="/">Back</a></button>
+
+<div>
+    <h2>{{ $news['title'] }}</h2>
+    <img src="{{ $news['img'] }}" alt="image">
+    <br>
+    <span>Status: <b>{{ $news['status'] }}</b></span>
+    <br>
+    <span>Автор: <i>{{ $news['author'] }}</i></span>
+    <br>
+    <p>{{ $news['body'] }}</p>
+</div>
+
 </body>
 
 </html>

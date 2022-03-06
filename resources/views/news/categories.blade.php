@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Новости</title>
+    <title>Категории</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,14 +19,15 @@
 </head>
 
 <body class="antialiased">
-<h1>Новостной сайт</h1>
+<h1>Категории</h1>
 
-<p>
-    Добро пожаловать на новостной сайт! Здесь Вы найдёте самые актуальные новости.
-</p>
+<a href="{{ route('welcome') }}">Вернуться на главною</a>
 
-<a href="{{ route('categories') }}">Просмотреть категории</a>
-
+<ul>
+    @foreach($categoryList as $category)
+        <li><a href="{{ route('news', ['category' => $category]) }}">{{ $category }}</a></li>
+    @endforeach
+</ul>
 </body>
 
 </html>
