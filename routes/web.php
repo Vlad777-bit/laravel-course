@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsController;
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\WelcomeController as AdminWelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])
-    -> name('welcome');
+    ->name('welcome');
 
 Route::get('/categories', [CategoryController::class, "index"])
     ->name('categories');
@@ -38,6 +39,7 @@ Route::get('/news/{category}/{id}', [NewsController::class, "show"])
     ]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::resource('category', AdminCategoryController::class);
+    Route::resource('welcome', AdminWelcomeController::class);
+    Route::resource('categories', AdminCategoryController::class);
     Route::resource('news', AdminNewsController::class);
 });
