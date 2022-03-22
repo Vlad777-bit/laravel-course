@@ -1,33 +1,26 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts/main')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('title') Категории | @parent @endsection
 
-    <title>Категории</title>
+@section('content')
+        @foreach($categoryList as $category)
+            <section class="post">
+                <header class="post-header">
+                    <h2 class="post-title">
+                        {{ $category }}
+                    </h2>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+                    <a href="{{ route('news', ['category' => $category]) }}" class="pure-button">Перейти</a>
+                </header>
 
-    <!-- Styles -->
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-    </style>
-</head>
-
-<body class="antialiased">
-<h1>Категории</h1>
-
-<a href="{{ route('welcome') }}">Вернуться на главною</a>
-
-<ul>
-    @foreach($categoryList as $category)
-        <li><a href="{{ route('news', ['category' => $category]) }}">{{ $category }}</a></li>
-    @endforeach
-</ul>
-</body>
-
-</html>
+                <div class="post-description">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                </div>
+            </section>
+        @endforeach
+@endsection
