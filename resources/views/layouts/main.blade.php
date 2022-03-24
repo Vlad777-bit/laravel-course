@@ -16,14 +16,7 @@
 
 <div id="layout" class="pure-g">
 
-    <div class="sidebar pure-u-1 pure-u-md-1-4">
-        <div class="header">
-            <h1 class="brand-title">TrueNews</h1>
-            <h2 class="brand-tagline">Добро пожаловать на новостной сайт! Здесь Вы найдёте самые актуальные новости.</h2>
-
-            <x-main.nav/>
-        </div>
-    </div>
+    @yield('sidebar')
 
     <div class="content pure-u-1 pure-u-md-3-4">
         @yield('content')

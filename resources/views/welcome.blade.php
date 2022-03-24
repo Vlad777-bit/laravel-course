@@ -2,6 +2,13 @@
 
 @section('title') Главная | @parent @endsection
 
+@section('sidebar')
+    <x-main.sidebar>
+        <h1 class="brand-title">TrueNews</h1>
+        <h2 class="brand-tagline">Добро пожаловать на новостной сайт! Здесь Вы найдёте самые актуальные новости.</h2>
+    </x-main.sidebar>
+@endsection
+
 @section('content')
     <div>
         <!-- A wrapper for all the blog posts -->
@@ -15,8 +22,8 @@
 
                     <p class="post-meta">
                         Автор <a href="#" class="post-author">Tilo Mitra</a> under <a
-                            class="post-category post-category-design" href="#">CSS</a>
-                        <a class="post-category post-category-pure" href="#">Pure</a>
+                            class="post-category post-category-active" href="#">CSS</a>
+                        <a class="post-category post-category-draft" href="#">Pure</a>
                     </p>
                 </header>
 
@@ -40,7 +47,7 @@
 
                     <p class="post-meta">
                         By <a class="post-author" href="#">Eric Ferraiuolo</a> under <a
-                            class="post-category post-category-js" href="#">JavaScript</a>
+                            class="post-category post-category-block" href="#">JavaScript</a>
                     </p>
                 </header>
 

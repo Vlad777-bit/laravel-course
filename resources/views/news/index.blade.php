@@ -1,47 +1,62 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts/main')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('title') {{$newsList[0]['category']}} | @parent @endsection
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-    </style>
-</head>
-
-<body class="antialiased">
-<h1>{{$newsList[0]['category']}}</h1>
-
-<button><a href="{{ route('categories') }}">Назад</a></button>
-
-@foreach($newsList as $news)
-    <div>
-        <h2>
-            <a href="{{ route('news.show', ['category' => $news['category'], 'id' => $news['id']]) }}">
-                {{ $news['title'] }}
-            </a>
+@section('sidebar')
+    <x-main.sidebar>
+        <h1 class="brand-title">{{$newsList[0]['category']}}</h1>
+        <h2 class="brand-tagline">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem rem.
         </h2>
-        <img src="{{ $news['img'] }}" alt="image">
-        <br>
-        <span>Категория: <b>{{ $news['category'] }}</b></span>
-        <br>
-        <span>Status <b>{{ $news['status'] }}</b></span>
-        <br>
-        <span>Автор: <i>{{ $news['author'] }}</i></span>
-        <br>
-        <p>{{ $news['body'] }}</p>
-    </div>
-    <hr>
-@endforeach
-</body>
+    </x-main.sidebar>
+@endsection
 
-</html>
+@section('content')
+    @foreach($newsList as $news)
+
+        @php
+            $route = route('news.show', ['category' => $news['category'], 'id' => $news['id']]);
+        @endphp
+
+        <div class="posts">
+
+            <section class="post">
+                <header class="post-header">
+                    <h2 class="post-title">
+                        <a href="{{ $route }}">
+                            {{ $news['title'] }}
+                        </a>
+                    </h2>
+
+                    <x-main.post-meta
+                        :author="$news['author']"
+                        :status="$news['status']"
+                    />
+
+                </header>
+
+                <div class="post-description">
+                    <div class="post-images pure-g">
+                        <div class="pure-u-1">
+                            <a href="{{ $route }}">
+                                <img alt="Photo of someone working poolside at a resort"
+                                     class="pure-img-responsive"
+                                     src="{{ $news['img'] }}"
+                                >
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        {{ $news['description'] }}
+                    </p>
+
+                    <div class="pure-button-right">
+                        <a href="{{ $route }}" class="pure-button">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    @endforeach
+@endsection

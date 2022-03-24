@@ -2,6 +2,13 @@
 
 @section('title') Категории | @parent @endsection
 
+@section('sidebar')
+    <x-main.sidebar>
+        <h1 class="brand-title">Категории</h1>
+        <h2 class="brand-tagline"></h2>
+    </x-main.sidebar>
+@endsection
+
 @section('content')
         @foreach($categoryList as $category)
             <section class="post">
