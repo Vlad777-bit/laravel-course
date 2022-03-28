@@ -9,6 +9,8 @@
 
     <link href="{{ asset('css/pure.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/side-menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/alert.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 </head>
 
 <body>
@@ -30,6 +32,7 @@
 </div>
 
 <script src="{{ asset('js/ui.js') }}"></script>
+<script src="{{ asset('js/alert.js') }}"></script>
 
 </body>
 

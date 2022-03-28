@@ -12,6 +12,11 @@
     </div>
 
     <div class="content">
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <x-alert type="danger" :message="$error" />
+            @endforeach
+        @endif
         <x-admin.news.form />
     </div>
 @endsection

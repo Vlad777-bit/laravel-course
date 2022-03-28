@@ -4,10 +4,20 @@
 
     <fieldset class="pure-group">
         <label for="title">Наименование</label>
-        <input type="text" name="title" class="pure-input-1" />
+        <input
+            type="text"
+            name="title"
+            class="pure-input-1"
+            value="{{ old('title') }}"
+        />
 
         <label for="author">Автор</label>
-        <input type="text" name="author" class="pure-input-1" />
+        <input
+            type="text"
+            name="author"
+            class="pure-input-1"
+            value="{{ old('author') }}"
+        />
 
         <label for="status-news">Статус</label>
         <select id="status-news" class="pure-input-1">
@@ -18,7 +28,10 @@
         <br>
         <br>
         <label for="description">Описание</label>
-        <textarea class="pure-input-1" name="description"></textarea>
+        <textarea
+            class="pure-input-1"
+            name="description"
+        >{!! old('description') !!}</textarea>
     </fieldset>
     <button type="submit" class="pure-button pure-input-1 pure-button-primary">Создать категорию</button>
 </form>
