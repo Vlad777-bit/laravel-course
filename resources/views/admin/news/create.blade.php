@@ -1,6 +1,6 @@
 @extends('layouts/admin')
 
-@section('title') Создать новость | @parent @endsection
+@section('title') Добавить новость | @parent @endsection
 
 @section('menu')
     <x-admin.sidebar />
@@ -8,6 +8,10 @@
 
 @section('content')
     <div class="header">
-        <h1>Создать новость</h1>
+        <h1>Добавить новость</h1>
+    </div>
+
+    <div class="content">
+        <x-admin.news.form />
     </div>
 @endsection
