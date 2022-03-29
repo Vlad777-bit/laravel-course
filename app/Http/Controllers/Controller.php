@@ -17,7 +17,7 @@ class Controller extends BaseController
         $faker = Factory::create();
         $dataNews = [];
         $status = ['DRAFT', 'ACTIVE', 'BLOCKED'];
-        $categoryList = $this->getCategories();
+        $categoryList = self::getCategories();
         $result = [];
 
         if ($id) {
@@ -53,7 +53,7 @@ class Controller extends BaseController
         return $result;
     }
 
-    public function getCategories(): array
+    public static function getCategories(): array
     {
         return ['Здоровье', 'Спорт', 'Наука', 'Красота', 'Программирование'];
     }
