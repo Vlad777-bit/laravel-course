@@ -1,4 +1,4 @@
-<form method="POST" class="pure-form">
+<form method="post" class="pure-form" action="{{ route('admin.categories.store') }}">
 
     @csrf
 
