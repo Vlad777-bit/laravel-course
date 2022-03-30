@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        return view('news.categories', [
+        return view('categories.index', [
             'categoryList' => $this->getCategories(),
         ]);
     }
