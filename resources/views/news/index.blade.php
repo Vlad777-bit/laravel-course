@@ -28,7 +28,7 @@
                         </a>
                     </h2>
 
-                    <x-main.post-meta
+                    <x-main.news.post-meta
                         :author="$news['author']"
                         :status="$news['status']"
                     />

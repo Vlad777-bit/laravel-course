@@ -36,6 +36,6 @@
 
     <div>
         <h2 class="post-title">Оставьте отзыв о работе нашего сайта ;)</h2>
-        <x-main.form />
+        <x-main.about.form />
     </div>
 @endsection

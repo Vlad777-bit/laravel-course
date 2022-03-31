@@ -3,7 +3,7 @@
     @csrf
 
     <fieldset class="pure-group">
-        <label for="title">Имя</label>
+        <label for="userName">Имя</label>
         <input type="text" name="userName" class="pure-input-1" />
         <br>
         <label for="description">Комментарий</label>
