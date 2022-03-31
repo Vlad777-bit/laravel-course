@@ -6,6 +6,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\OfferController;
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
@@ -38,6 +39,8 @@ Route::get('/news/{category}/{id}', [NewsController::class, "show"])
         'id' => '\d+',
         'category' => '[А-ЯЁа-яё]+',
     ]);
+
+Route::resource('offer', OfferController::class);
 
 Route::get('/about', [AboutController::class, "index"])
     ->name('about');

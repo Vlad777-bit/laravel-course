@@ -24,5 +24,13 @@
                 О сайте
             </a>
         </li>
+        <li class="nav-item">
+            <a
+                class="pure-button @if(request()->routeIs('offer.index')) active @endif"
+                href="{{ route('offer.index') }}"
+            >
+                Предложить новость
+            </a>
+        </li>
     </ul>
 </nav>
