@@ -1,36 +1,64 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts/main')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('title') Главная | @parent @endsection
 
-    <title>Laravel</title>
+@section('sidebar')
+    <x-main.sidebar>
+        <h1 class="brand-title">TrueNews</h1>
+        <h2 class="brand-tagline">Добро пожаловать на новостной сайт! Здесь Вы найдёте самые актуальные новости.</h2>
+    </x-main.sidebar>
+@endsection
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+@section('content')
+    <div>
+        <div class="posts">
+            <section class="post">
+                <header class="post-header">
+                    <h2 class="post-title">{{ $news['title'] }}</h2>
 
-    <!-- Styles -->
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-    </style>
-</head>
+                    <x-main.post-meta
+                        :author="$news['author']"
+                        :status="$news['status']"
+                    />
 
-<body class="antialiased">
+                </header>
 
-<div>
-    <h2>{{ $news['title'] }}</h2>
-    <img src="{{ $news['img'] }}" alt="image">
-    <br>
-    <span>Status: <b>{{ $news['status'] }}</b></span>
-    <br>
-    <span>Автор: <i>{{ $news['author'] }}</i></span>
-    <br>
-    <p>{{ $news['body'] }}</p>
-</div>
+                <div class="post-description">
+                    <div class="post-images pure-g">
+                        <div class="pure-u-1">
+                            <a href="#">
+                                <img alt="Photo of someone working poolside at a resort"
+                                     class="pure-img-responsive"
+                                     src="{{ $news['img'] }}"
+                                >
+                            </a>
+                        </div>
+                    </div>
 
-</body>
+                    <p>
+                        {{ $news['body'] }}
+                    </p>
 
-</html>
+                    <div class="post-images pure-g">
+                        <div class="pure-u-1">
+                            <a href="#">
+                                <img alt="Photo of someone working poolside at a resort"
+                                     class="pure-img-responsive"
+                                     src="{{ $news['img'] }}"
+                                >
+                            </a>
+                        </div>
+                    </div>
+
+                    <p>
+                        {{ $news['body'] }}
+                    </p>
+
+                </div>
+            </section>
+        </div>
+
+        <x-main.footer />
+
+    </div>
+@endsection

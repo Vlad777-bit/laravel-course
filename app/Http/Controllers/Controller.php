@@ -23,9 +23,9 @@ class Controller extends BaseController
         if ($id) {
             return [
                 'title' => $faker->jobTitle(),
-                'img' => $faker->imageUrl(200, 160),
+                'img' => $faker->imageUrl(1250, 325),
                 'author' => $faker->userName(),
-                'body' => $faker->text(200),
+                'body' => $faker->text(2000),
                 'status' => $status[mt_rand(0, 2)],
             ];
         }
@@ -34,9 +34,9 @@ class Controller extends BaseController
             $dataNews[] = [
                 'id' => $i,
                 'title' => $faker->jobTitle(),
-                'img' => $faker->imageUrl(200, 170),
+                'img' => $faker->imageUrl(1250, 325),
                 'author' => $faker->userName(),
-                'body' => $faker->text(200),
+                'description' => $faker->text(500),
                 'status' => $status[mt_rand(0, 2)],
                 'category' => $categoryList[mt_rand(0, 4)],
             ];
