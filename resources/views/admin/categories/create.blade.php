@@ -10,5 +10,9 @@
     <div class="header">
         <h1>Создать категорию</h1>
     </div>
+
+    <div class="content">
+        <x-admin.category.form />
+    </div>
 @endsection
 

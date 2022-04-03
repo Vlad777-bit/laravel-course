@@ -75,6 +75,10 @@ h3 {
     text-decoration: none;
 }
 
+.nav-item .active {
+    border: 2px solid rgb(61, 146, 201);
+}
+
 .content-subhead {
     text-transform: uppercase;
     color: #aaa;
@@ -87,6 +91,11 @@ h3 {
 
 .content {
     padding: 2em 1em 0;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .post {
@@ -145,7 +154,7 @@ h3 {
 }
 
 .posts {
-    border-bottom: 1px solid #eee;
+    margin-bottom: 1em;
 }
 
 .footer {

@@ -10,6 +10,8 @@
     <link href="{{ asset('css/pure.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/grids-responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/alert.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 </head>
 
 <body>
@@ -20,10 +22,11 @@
 
     <div class="content pure-u-1 pure-u-md-3-4">
         @yield('content')
+        <x-main.footer />
     </div>
 </div>
 
-
+<script src="{{ asset('js/alert.js') }}"></script>
 </body>
 
 </html>

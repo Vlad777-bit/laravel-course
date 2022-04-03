@@ -17,7 +17,7 @@ class Controller extends BaseController
         $faker = Factory::create();
         $dataNews = [];
         $status = ['DRAFT', 'ACTIVE', 'BLOCKED'];
-        $categoryList = $this->getCategories();
+        $categoryList = self::getCategories();
         $result = [];
 
         if ($id) {
@@ -53,7 +53,24 @@ class Controller extends BaseController
         return $result;
     }
 
-    public function getCategories(): array
+    public function getComments(): array
+    {
+        $faker = Factory::create();
+        $commentsList = [];
+
+        for($i = 1; $i < 10; $i++)
+        {
+            $commentsList[] = [
+                'author' => $faker->userName(),
+                'img' => $faker->imageUrl(48, 48),
+                'comment' => $faker->text(mt_rand(100, 300)),
+            ];
+        }
+
+        return $commentsList;
+    }
+
+    public static function getCategories(): array
     {
         return ['Здоровье', 'Спорт', 'Наука', 'Красота', 'Программирование'];
     }

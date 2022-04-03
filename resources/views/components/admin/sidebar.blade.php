@@ -3,17 +3,34 @@
         <a class="pure-menu-heading" href="{{ route('welcome') }}">TrueNews</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item">
-                <a href="{{ route('admin.welcome.index') }}" class="pure-menu-link">
+            <li
+                class="pure-menu-item
+                    @if(request()->routeIs('admin.index'))
+                            menu-item-divided pure-menu-selected
+                    @endif"
+            >
+                <a href="{{ route('admin.index') }}" class="pure-menu-link">
                     Панель
                 </a>
             </li>
-            <li class="pure-menu-item">
+
+            <li
+                class="pure-menu-item
+                    @if(request()->routeIs('admin.news.*'))
+                        menu-item-divided pure-menu-selected
+                    @endif"
+            >
                 <a href="{{ route('admin.news.index') }}" class="pure-menu-link">
                     Новости
                 </a>
             </li>
-            <li class="pure-menu-item">
+
+            <li
+                class="pure-menu-item
+                    @if(request()->routeIs('admin.categories.*'))
+                        menu-item-divided pure-menu-selected
+                    @endif"
+            >
                 <a href="{{ route('admin.categories.index') }}" class="pure-menu-link">
                     Категории
                 </a>
