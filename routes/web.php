@@ -31,13 +31,13 @@ Route::get('/categories', [CategoryController::class, "index"])
 
 Route::get('/news/{category}', [NewsController::class, "index"])
     ->name('news')
-    ->where(['category' => '[А-ЯЁа-яё]+']);
+    ->where(['category' => '\d+']);
 
-Route::get('/news/{category}/{id}', [NewsController::class, "show"])
+Route::get('/news/{id}/{category}', [NewsController::class, "show"])
     ->name('news.show')
     ->where([
+        'category' => '\d+',
         'id' => '\d+',
-        'category' => '[А-ЯЁа-яё]+',
     ]);
 
 Route::resource('offer', OfferController::class);
