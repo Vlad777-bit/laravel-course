@@ -1,11 +1,10 @@
 @extends('layouts/main')
 
-@section('title') Главная | @parent @endsection
+@section('title') {{ $news->title }} | @parent @endsection
 
 @section('sidebar')
     <x-main.sidebar>
-        <h1 class="brand-title">TrueNews</h1>
-        <h2 class="brand-tagline">Добро пожаловать на новостной сайт! Здесь Вы найдёте самые актуальные новости.</h2>
+        <h1 class="brand-title">{{ $news->title }}</h1>
     </x-main.sidebar>
 @endsection
 
@@ -14,11 +13,11 @@
         <div class="posts">
             <section class="post">
                 <header class="post-header">
-                    <h2 class="post-title">{{ $news['title'] }}</h2>
+                    <h2 class="post-title">{{ $news->title }}</h2>
 
                     <x-main.news.post-meta
-                        :author="$news['author']"
-                        :status="$news['status']"
+                        :author="$news->author"
+                        :status="$news->status"
                     />
 
                 </header>
@@ -29,36 +28,18 @@
                             <a href="#">
                                 <img alt="Photo of someone working poolside at a resort"
                                      class="pure-img-responsive"
-                                     src="{{ $news['img'] }}"
+                                     src="{{ $news->image }}"
                                 >
                             </a>
                         </div>
                     </div>
 
                     <p>
-                        {{ $news['body'] }}
+                        {{ $news->description }}
                     </p>
-
-                    <div class="post-images pure-g">
-                        <div class="pure-u-1">
-                            <a href="#">
-                                <img alt="Photo of someone working poolside at a resort"
-                                     class="pure-img-responsive"
-                                     src="{{ $news['img'] }}"
-                                >
-                            </a>
-                        </div>
-                    </div>
-
-                    <p>
-                        {{ $news['body'] }}
-                    </p>
-
                 </div>
             </section>
         </div>
-
-        <x-main.footer />
 
     </div>
 @endsection

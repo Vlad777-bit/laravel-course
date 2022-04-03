@@ -8,6 +8,10 @@
     <title>@section('title') Панель администратора @show</title>
 
     <link href="{{ asset('css/pure.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/grids-responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/side-menu.css') }}" rel="stylesheet">
     <link href="{{ asset('css/alert.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">

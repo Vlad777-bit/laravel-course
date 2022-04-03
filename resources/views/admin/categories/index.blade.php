@@ -14,4 +14,40 @@
     <div class="header">
         <h1>Список категорий</h1>
     </div>
+
+    <div class="content">
+        <table class="pure-table pure-table-bordered">
+            <thead>
+            <tr>
+                <th>#ID</th>
+                <th>Заголовок</th>
+                <th>Описание</th>
+                <th>Опции</th>
+            </tr>
+            </thead>
+            <tbody>
+                @forelse($categoriesList as $category)
+                    <tr>
+                        <td>{{ $category->id }}</td>
+                        <td>{{ $category->title }}</td>
+                        <td>{{ $category->description }}</td>
+                        <td>
+                            <a
+                                href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
+                                class="pure-button"
+                            >
+                                Ред.
+                            </a>
+                            &nbsp;
+                            <a href="#" class="pure-button pure-button-danger">Удл.</a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">Категорий пока нет</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection

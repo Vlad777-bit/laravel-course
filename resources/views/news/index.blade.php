@@ -1,21 +1,18 @@
 @extends('layouts/main')
 
-@section('title') {{$newsList[0]['category']}} | @parent @endsection
+@section('title') {{ $category->title }} | @parent @endsection
 
 @section('sidebar')
     <x-main.sidebar>
-        <h1 class="brand-title">{{$newsList[0]['category']}}</h1>
-        <h2 class="brand-tagline">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem rem.
-        </h2>
+        <h1 class="brand-title">{{ $category->title }}</h1>
     </x-main.sidebar>
 @endsection
 
 @section('content')
-    @foreach($newsList as $news)
+    @forelse($newsList as $news)
 
         @php
-            $route = route('news.show', ['category' => $news['category'], 'id' => $news['id']]);
+            $route = route('news.show', ['id' => $news->id, 'category' => $news->category_id]);
         @endphp
 
         <div class="posts">
@@ -24,13 +21,13 @@
                 <header class="post-header">
                     <h2 class="post-title">
                         <a href="{{ $route }}">
-                            {{ $news['title'] }}
+                            {{ $news->title }}
                         </a>
                     </h2>
 
                     <x-main.news.post-meta
-                        :author="$news['author']"
-                        :status="$news['status']"
+                        :author="$news->author"
+                        :status="$news->status"
                     />
 
                 </header>
@@ -41,13 +38,13 @@
                             <a href="{{ $route }}">
                                 <img alt="Photo of someone working poolside at a resort"
                                      class="pure-img-responsive"
-                                     src="{{ $news['img'] }}"
+                                     src="{{ $news->image }}"
                                 >
                             </a>
                         </div>
                     </div>
                     <p>
-                        {{ $news['description'] }}
+                        {{ $news->description }}
                     </p>
 
                     <div class="pure-button-right">
@@ -58,5 +55,7 @@
                 </div>
             </section>
         </div>
-    @endforeach
+        @empty
+        <h2 class="post-title">Новостей по этой категории нет</h2>
+    @endforelse
 @endsection
