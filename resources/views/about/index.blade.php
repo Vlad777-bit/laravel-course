@@ -16,17 +16,17 @@
         <div class="posts">
             <section class="post">
                 <header class="post-header">
-                    <img width="48" height="48" alt="{{ $comment['author'] }} avatar" class="post-avatar"
-                         src="{{ $comment['img'] }}">
+                    <img width="48" height="48" alt="{{ $comment->author }} avatar" class="post-avatar"
+                         src="{{ $comment->image }}">
 
                     <p class="post-meta">
-                        By <a href="#" class="post-author">{{ $comment['author'] }}</a>
+                        By <a href="#" class="post-author">{{ $comment->author }}</a>
                     </p>
                 </header>
 
                 <div class="post-description">
                     <p>
-                        {{ $comment['comment'] }}
+                        {{ $comment->comment }}
                     </p>
                 </div>
             </section>
