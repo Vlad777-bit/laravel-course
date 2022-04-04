@@ -1,4 +1,4 @@
-<form method="post" class="pure-form">
+<form method="get" class="pure-form">
 
     @csrf
 
