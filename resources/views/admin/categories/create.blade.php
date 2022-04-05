@@ -12,7 +12,36 @@
     </div>
 
     <div class="content">
-        <x-admin.category.form />
+        <div>
+            @include('inc.messages')
+
+            <x-ui.form
+                method="POST"
+                route="{{ route('admin.categories.store') }}"
+                custom-method=""
+            >
+                <x-ui.input
+                    name="title"
+                    title="Наименование"
+                    type="text"
+                    value=""
+                />
+
+                <x-ui.textarea
+                    name="description"
+                    title="Описание"
+                />
+
+                <x-slot:button>
+                    <x-ui.button
+                        type="submit"
+                        cssClass="pure-input-1 pure-button-primary"
+                    >
+                        Создать категорию
+                    </x-ui.button>
+                </x-slot:button>
+            </x-ui.form>
+        </div>
     </div>
 @endsection
 

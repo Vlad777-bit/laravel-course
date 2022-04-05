@@ -14,10 +14,56 @@
 @section('content')
     <div>
         <h2 class="post-title">Предложите новость</h2>
-        @if(isset($success_response))
-            <x-alert type="success" message="Мы посмотрим ваше предложение!" icon="fa-check"/>
-        @endif
-        <x-main.offer.form />
+
+        @include('inc.messages')
+
+        <x-ui.form
+            method="POST"
+            route="{{ route('offer.store') }}"
+            custom-method=""
+        >
+            <x-ui.input
+                name="userName"
+                title="Имя"
+                type="text"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.input
+                name="userPhone"
+                title="Телефон"
+                type="tel"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.input
+                name="userEmail"
+                title="Почта"
+                type="email"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.textarea
+                name="description"
+                title="О чём бы вы хотели написать?"
+            />
+
+            <x-slot:button>
+                <div class="pure-button-right">
+                    <x-ui.button
+                        type="submit"
+                        cssClass="pure-input-1-5 pure-button-form"
+                    >
+                        Отправить
+                    </x-ui.button>
+                </div>
+            </x-slot:button>
+        </x-ui.form>
     </div>
 @endsection
-

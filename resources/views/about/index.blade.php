@@ -36,6 +36,39 @@
 
     <div>
         <h2 class="post-title">Оставьте отзыв о работе нашего сайта ;)</h2>
-        <x-main.about.form />
+
+        <x-ui.form
+            method="GET"
+            route=""
+            custom-method=""
+        >
+
+            <x-ui.input
+                name="userName"
+                title="Имя"
+                type="text"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.textarea
+                name="comment"
+                title="Комментарий"
+            />
+
+
+            <x-slot:button>
+                <div class="pure-button-right">
+                    <x-ui.button
+                        type="submit"
+                        cssClass="pure-input-1-5 pure-button-form"
+                    >
+                        Отправить
+                    </x-ui.button>
+                </div>
+            </x-slot:button>
+
+        </x-ui.form>
     </div>
 @endsection
