@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class OfferController extends Controller
@@ -10,7 +12,7 @@ class OfferController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index(): View
     {
@@ -20,7 +22,7 @@ class OfferController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -30,23 +32,27 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request): View
+    public function store(Request $request): RedirectResponse
     {
         $data = json_encode($request->except('_token'));
         file_put_contents('userOffer.json', $data, FILE_APPEND);
-        return view('offer.index', [
-            'success_response' => true,
-        ]);
+
+        if(!$data) {
+            return back()->with('error', 'Ошибка при добавлении категории');
+        }
+
+        return redirect()->route('offer.index')
+            ->with('success', 'Данные отправлены! Мы скоро свяжемся с Вами');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -57,7 +63,7 @@ class OfferController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -67,9 +73,9 @@ class OfferController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -80,7 +86,7 @@ class OfferController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
