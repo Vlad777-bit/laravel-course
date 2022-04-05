@@ -29,9 +29,10 @@
                             </a>
                         </h2>
 
-                        <x-main.news.post-meta
+                        <x-admin.news.post-meta
                             :author="$news->author"
                             :status="$news->status"
+                            :category="$news->categoryTitle"
                         />
 
                     </header>

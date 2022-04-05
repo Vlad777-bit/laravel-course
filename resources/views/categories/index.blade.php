@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-        @foreach($categoriesList as $category)
+        @forelse($categoriesList as $category)
             <section class="post">
                 <header class="post-header">
                     <h2 class="post-title">
@@ -26,5 +26,7 @@
                     </p>
                 </div>
             </section>
-        @endforeach
+        @empty
+            <h2 class="post-header">Категорий пока нет</h2>
+        @endforelse
 @endsection
