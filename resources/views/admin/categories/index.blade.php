@@ -16,6 +16,9 @@
     </div>
 
     <div class="content">
+
+        @include('inc.messages')
+
         <table class="pure-table pure-table-bordered">
             <thead>
             <tr>
