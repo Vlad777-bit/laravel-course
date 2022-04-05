@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
@@ -12,16 +11,17 @@ class Category extends Model
 
     protected $table = 'Categories';
 
-    public function getCategories(): array
-    {
-        return DB::table($this->table)
-                ->select("id", "title", "description")
-                ->get()
-                ->toArray();
-    }
+    protected $fillable = [
+        'title',
+        'description',
+    ];
 
-    public function getCategoryById(int $id): mixed
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    public function scopeActive($query)
     {
-        return DB::table($this->table)->find($id);
+        return $query->where('is_active', true);
     }
 }

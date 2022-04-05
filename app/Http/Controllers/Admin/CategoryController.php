@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Category;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -19,10 +20,8 @@ class CategoryController extends Controller
      */
     public function index(): View
     {
-        $categories = app(Category::class);
-
         return view('admin.categories.index', [
-            'categoriesList' => $categories->getCategories(),
+            'categoriesList' => Category::active()->get(),
         ]);
     }
 
@@ -39,12 +38,20 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $categoryData = $request->only(['title', 'description']);
+        $newCategory = Category::create($categoryData);
+
+        if(!$newCategory) {
+            return back()->with('error', 'Ошибка при добавлении категории');
+        }
+
+        return redirect()->route('admin.categories.index')
+            ->with('success', 'Категория успешно добавлена!');
     }
 
     /**
@@ -61,24 +68,34 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return View
      */
-    public function edit($id): View
+    public function edit(Category $category): View
     {
-        return view('admin.categories.edit');
+        return view('admin.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param Request $request
+     * @param Category $category
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category): RedirectResponse
     {
-        //
+        $status = $category->fill($request->only(['title', 'description']))->save();
+
+        if(!$status)
+        {
+            return back()->with('error', 'Ошибка при обновлении категории');
+        }
+
+        return redirect()->route('admin.categories.index')
+            ->with('success', 'Категория успешно обновлена!');
     }
 
     /**
