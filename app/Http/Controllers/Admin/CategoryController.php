@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         return view('admin.categories.index', [
-            'categoriesList' => Category::active()->get(),
+            'categoriesList' => Category::active()->withCount('news')->get(),
         ]);
     }
 

@@ -16,22 +16,24 @@
     </div>
 
     <div class="content">
+        <div>
+            @include('inc.messages')
 
-        @include('inc.messages')
-
-        <table class="pure-table pure-table-bordered">
-            <thead>
-            <tr>
-                <th>#ID</th>
-                <th>Заголовок</th>
-                <th>Описание</th>
-                <th>Опции</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table class="pure-table pure-table-bordered">
+                <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th>Кол-во новостей</th>
+                    <th>Заголовок</th>
+                    <th>Описание</th>
+                    <th>Опции</th>
+                </tr>
+                </thead>
+                <tbody>
                 @forelse($categoriesList as $category)
                     <tr>
                         <td>{{ $category->id }}</td>
+                        <td>{{ $category->news_count }}</td>
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->description }}</td>
                         <td>
@@ -50,7 +52,8 @@
                         <td colspan="4">Категорий пока нет</td>
                     </tr>
                 @endforelse
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+        </div>
 @endsection
