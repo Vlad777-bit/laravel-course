@@ -11,10 +11,8 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = app(Category::class);
-
         return view('categories.index', [
-            'categoriesList' => $categories->getCategories(),
+            'categoriesList' => Category::active()->orderBy('id', 'desc')->get(),
         ]);
     }
 }

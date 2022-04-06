@@ -51,8 +51,8 @@ class NewsController extends Controller
         ]);
 
         $news = News::create($request->only([
-            'category_id', 'title', 'status', 'author',
-            'image', 'description',
+            'category_id', 'title', 'author',
+            'image', 'status', 'description',
         ]));
 
         if(!$news) {
@@ -101,6 +101,8 @@ class NewsController extends Controller
             'category_id', 'title', 'author',
             'image', 'status', 'description',
         ]))->save();
+
+//        dd($request->all());
 
         if(!$status) {
             return back()->with('error', 'Не удалось обновит запись');

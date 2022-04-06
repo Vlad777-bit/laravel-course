@@ -1,10 +1,10 @@
 @extends('layouts/main')
 
-@section('title') {{ $category->title }} | @parent @endsection
+@section('title') {{ $category[0]->title }} | @parent @endsection
 
 @section('sidebar')
     <x-main.sidebar>
-        <h1 class="brand-title">{{ $category->title }}</h1>
+        <h1 class="brand-title">{{ $category[0]->title }}</h1>
     </x-main.sidebar>
 @endsection
 

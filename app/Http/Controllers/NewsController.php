@@ -14,21 +14,16 @@ class NewsController extends Controller
 {
     public function index(int $categoryId): View
     {
-        $news     = app(News::class);
-        $category = app(Category::class);
-
         return view('news.index', [
-            'newsList' => $news->getNews($categoryId),
-            'category' => $category->getCategoryById($categoryId),
+            'newsList' => News::where('category_id', '=', $categoryId)->where('status', '=', 'ACTIVE')->get(),
+            'category' => Category::select('id', 'title')->where('id', '=', $categoryId)->get()
         ]);
     }
 
     public function show(int $id): View
     {
-        $news = app(News::class);
-
         return view('news.show', [
-            'news' => $news->getNewsById($id),
+            'news' => News::where('id', '=', $id)->get(),
         ]);
     }
 }
