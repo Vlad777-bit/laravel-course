@@ -102,8 +102,6 @@ class NewsController extends Controller
             'image', 'status', 'description',
         ]))->save();
 
-//        dd($request->all());
-
         if(!$status) {
             return back()->with('error', 'Не удалось обновит запись');
         }
