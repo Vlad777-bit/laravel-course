@@ -1,11 +1,11 @@
-<form method="{{ $method }}" class="pure-form" action="{{ $route }}">
+<form method="{{ $method }}" action="{{ $route }}">
 
     @csrf
     @method("$customMethod")
 
-    <fieldset class="pure-group">
-        {{ $slot }}
-    </fieldset>
+    {{ $slot }}
+
+    <br><br>
 
     {{ $button }}
 </form>

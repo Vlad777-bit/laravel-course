@@ -1,4 +1,4 @@
 <label for="{{ $name }}">{{ $title }}</label>
-<textarea class="pure-input-1" name="{{ $name }}">
+<textarea class="form-control" name="{{ $name }}" id="{{ $name }}">
     {{ $slot }}
 </textarea>

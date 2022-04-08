@@ -1,4 +1,6 @@
-<label for="{{ $name }}">{{ $title }}</label>
-<select name="{{ $name }}" id="{{ $name }}" class="pure-input-1">
-    {{ $slot }}
-</select>
+<div class="form-group">
+    <label for="{{ $name }}">{{ $title }}</label>
+    <select class="form-control" name="{{ $name }}" id="{{ $name }}">
+        {{ $slot }}
+    </select>
+</div>

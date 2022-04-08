@@ -16,7 +16,7 @@ class NewsController extends Controller
     {
         return view('news.index', [
             'newsList' => News::where('category_id', '=', $categoryId)->where('status', '=', 'ACTIVE')->get(),
-            'category' => Category::select('id', 'title')->where('id', '=', $categoryId)->get()
+            'category' => Category::select('id', 'title','description')->where('id', '=', $categoryId)->get()
         ]);
     }
 

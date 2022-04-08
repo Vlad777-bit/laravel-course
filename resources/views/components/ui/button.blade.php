@@ -1,6 +1,6 @@
 <button
     type="{{ $type }}"
-    class="pure-button {{ $cssClass }}"
+    class="btn {{ $cssClass }}"
 >
     {{ $slot }}
 </button>

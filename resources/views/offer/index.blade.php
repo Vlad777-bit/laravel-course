@@ -2,18 +2,15 @@
 
 @section('title') Предложение | @parent @endsection
 
-@section('sidebar')
-    <x-main.sidebar>
-        <h1 class="brand-title">Предложите нам новость</h1>
-        <h2 class="brand-tagline">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem rem.
-        </h2>
-    </x-main.sidebar>
+@section('greeting')
+    <x-main.greeting
+        title="Предложите нам свою новость"
+    />
 @endsection
 
 @section('content')
-    <div>
-        <h2 class="post-title">Предложите новость</h2>
+    <div class="container px-4 py-5 mt-5" id="featured-3">
+        <h2>Предложите новость</h2>
 
         @include('inc.messages')
 
@@ -55,14 +52,12 @@
             />
 
             <x-slot:button>
-                <div class="pure-button-right">
-                    <x-ui.button
-                        type="submit"
-                        cssClass="pure-input-1-5 pure-button-form"
-                    >
-                        Отправить
-                    </x-ui.button>
-                </div>
+                <x-ui.button
+                    type="submit"
+                    cssClass="btn-outline-primary"
+                >
+                    Отправить
+                </x-ui.button>
             </x-slot:button>
         </x-ui.form>
     </div>
