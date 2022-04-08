@@ -35,17 +35,12 @@
 
                 </x-ui.select>
 
-                <br>
-                <br>
-
                 <x-ui.input
                     name="title"
                     title="Наименование"
                     type="text"
                     value="{{ $news->title }}"
                 />
-
-                <br>
 
                 <x-ui.input
                     name="author"
@@ -54,16 +49,12 @@
                     value="{{ $news->author }}"
                 />
 
-                <br>
-
                 <x-ui.input
                     name="image"
                     title="Изображение"
                     type="file"
                     value=""
                 />
-
-                <br>
 
                 <x-ui.select
                     name="status"
@@ -73,9 +64,6 @@
                     <option @if($news->status === 'ACTIVE') selected @endif>ACTIVE</option>
                     <option @if($news->status === 'BLOCKED') selected @endif>BLOCKED</option>
                 </x-ui.select>
-
-                <br>
-                <br>
 
                 <x-ui.textarea
                     name="description"
@@ -87,7 +75,7 @@
                 <x-slot:button>
                     <x-ui.button
                         type="submit"
-                        cssClass="pure-input-1 pure-button-primary"
+                        cssClass="btn-outline-primary"
                     >
                         Обновить
                     </x-ui.button>

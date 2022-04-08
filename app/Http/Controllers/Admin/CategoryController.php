@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index(): View
     {
         return view('admin.categories.index', [
-            'categoriesList' => Category::active()->withCount('news')->get(),
+            'categoriesList' => Category::orderBy('id', 'desc')->withCount('news')->paginate(5),
         ]);
     }
 
@@ -87,7 +87,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category): RedirectResponse
     {
-        $status = $category->fill($request->only(['title', 'description']))->save();
+        $status = $category->fill($request->only(['title', 'is_active', 'description']))->save();
 
         if(!$status)
         {

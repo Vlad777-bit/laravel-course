@@ -1,43 +1,48 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<!doctype html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@section('title') Панель администратора @show</title>
+    <title>@section('title')Панель админа @show</title>
 
-    <link href="{{ asset('css/pure.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/grids-responsive.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/side-menu.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/alert.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 </head>
-
 <body>
 
-<div id="layout">
-    <!-- Menu toggle -->
-    <a href="#menu" id="menuLink" class="menu-link">
-        <!-- Hamburger icon -->
-        <span></span>
-    </a>
+<x-admin.header />
 
-    @yield('menu')
+<div class="container-fluid">
+    <div class="row">
 
-    <div id="main">
+        <x-admin.sidebar />
 
-        @yield('content')
-
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            @yield('content')
+        </main>
     </div>
 </div>
 
-<script src="{{ asset('js/ui.js') }}"></script>
-<script src="{{ asset('js/alert.js') }}"></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script src="{{ asset('js/dashboard.js') }}"></script>
 
 </body>
-
 </html>

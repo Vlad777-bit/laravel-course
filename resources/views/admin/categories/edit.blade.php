@@ -28,6 +28,25 @@
                     :value="$category->title"
                 />
 
+                <x-ui.select
+                    name="is_active"
+                    title="Активировать?"
+                >
+                    <option
+                        @if($category->is_active === true) selected @endif
+                        value="1"
+                    >
+                        Да
+                    </option>
+
+                    <option
+                        @if($category->is_active === false) selected @endif
+                        value="0"
+                    >
+                        Нет
+                    </option>
+                </x-ui.select>
+
                 <x-ui.textarea
                     name="description"
                     title="Описание"
@@ -38,7 +57,7 @@
                 <x-slot:button>
                     <x-ui.button
                         type="submit"
-                        cssClass="pure-input-1 pure-button-primary"
+                        cssClass="btn-outline-primary"
                     >
                         Сохранить
                     </x-ui.button>
