@@ -32,13 +32,15 @@
                     title="Активировать?"
                 >
                     <option
-                        @if(old('is_active') === 'true') selected @endif
+                        @if(old('is_active') === true) selected @endif
+                        value="1"
                     >
                         Да
                     </option>
 
                     <option
-                        @if(old('is_active') === 'false') selected @endif
+                        @if(old('is_active') === false) selected @endif
+                        value="0"
                     >
                         Нет
                     </option>

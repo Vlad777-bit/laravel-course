@@ -77,7 +77,7 @@
                         type="submit"
                         cssClass="btn-outline-primary"
                     >
-                        Создать категорию
+                        Добавить запись
                     </x-ui.button>
                 </x-slot:button>
             </x-ui.form>
