@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\Category\CreateRequest;
+use App\Http\Requests\Category\EditRequest;
 use App\Models\Category;
 
 use Illuminate\Http\RedirectResponse;
@@ -38,13 +40,12 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CreateRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(CreateRequest $request): RedirectResponse
     {
-        $categoryData = $request->only(['title', 'description']);
-        $newCategory = Category::create($categoryData);
+        $newCategory = Category::create($request->validated());
 
         if(!$newCategory) {
             return back()->with('error', 'Ошибка при добавлении категории');
@@ -81,13 +82,13 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param EditRequest $request
      * @param Category $category
      * @return RedirectResponse
      */
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(EditRequest $request, Category $category): RedirectResponse
     {
-        $status = $category->fill($request->only(['title', 'is_active', 'description']))->save();
+        $status = $category->fill($request->validated())->save();
 
         if(!$status)
         {
