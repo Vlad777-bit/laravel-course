@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\News\CreateRequest;
+use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
 
@@ -41,19 +43,12 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CreateRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(CreateRequest $request): RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'string'],
-        ]);
-
-        $news = News::create($request->only([
-            'category_id', 'title', 'author',
-            'image', 'status', 'description',
-        ]));
+        $news = News::create($request->validated());
 
         if(!$news) {
             return back()->with('error', 'Не удалось создать новость');
@@ -91,16 +86,13 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param EditRequest $request
      * @param News $news
      * @return RedirectResponse
      */
-    public function update(Request $request, News $news): RedirectResponse
+    public function update(EditRequest $request, News $news): RedirectResponse
     {
-        $status = $news->fill($request->only([
-            'category_id', 'title', 'author',
-            'image', 'status', 'description',
-        ]))->save();
+        $status = $news->fill($request->validated())->save();
 
         if(!$status) {
             return back()->with('error', 'Не удалось обновит запись');
