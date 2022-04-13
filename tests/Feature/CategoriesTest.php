@@ -30,6 +30,6 @@ class CategoriesTest extends TestCase
     {
         $response = $this->get('/categories');
 
-        $response->assertViewHas('categoryList', $value = null);
+        $response->assertViewHas('categoriesList', $value = null);
     }
 }
