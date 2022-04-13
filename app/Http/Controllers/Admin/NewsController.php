@@ -9,9 +9,11 @@ use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
 
+use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class NewsController extends Controller
@@ -105,11 +107,19 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param News $news
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(News $news): JsonResponse
     {
-        //
+        try {
+            $news->delete();
+
+            return response()->json(['status' => 'ok']);
+        } catch(Exception $e) {
+            Log::error("News wasn't delete");
+
+            return response()->json(['status' => 'error'], 400);
+        }
     }
 }

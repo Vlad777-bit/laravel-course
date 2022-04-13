@@ -8,9 +8,11 @@ use App\Http\Requests\Category\CreateRequest;
 use App\Http\Requests\Category\EditRequest;
 use App\Models\Category;
 
+use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -102,11 +104,19 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Category $category
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category): JsonResponse
     {
-        //
+        try {
+            $category->delete();
+
+            return response()->json(['status' => 'ok']);
+        } catch(Exception $e) {
+            Log::error("Category wasn't delete");
+
+            return response()->json(['status' => 'error'], 400);
+        }
     }
 }
