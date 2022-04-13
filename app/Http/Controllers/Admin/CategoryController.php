@@ -48,11 +48,11 @@ class CategoryController extends Controller
         $newCategory = Category::create($request->validated());
 
         if(!$newCategory) {
-            return back()->with('error', 'Ошибка при добавлении категории');
+            return back()->with('error', __('messages.admin.categories.create.fail'));
         }
 
         return redirect()->route('admin.categories.index')
-            ->with('success', 'Категория успешно добавлена!');
+            ->with('success', __('messages.admin.categories.create.success'));
     }
 
     /**
@@ -92,11 +92,11 @@ class CategoryController extends Controller
 
         if(!$status)
         {
-            return back()->with('error', 'Ошибка при обновлении категории');
+            return back()->with('error', __('messages.admin.categories.update.fail'));
         }
 
         return redirect()->route('admin.categories.index')
-            ->with('success', 'Категория успешно обновлена!');
+            ->with('success', __('messages.admin.categories.update.success'));
     }
 
     /**

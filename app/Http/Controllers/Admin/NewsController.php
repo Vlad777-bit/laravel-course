@@ -51,11 +51,11 @@ class NewsController extends Controller
         $news = News::create($request->validated());
 
         if(!$news) {
-            return back()->with('error', 'Не удалось создать новость');
+            return back()->with('error', __('messages.admin.news.create.fail'));
         }
 
         return redirect()->route('admin.news.index')
-            ->with('success', 'Новость была успешно добавлена!');
+            ->with('success', __('messages.admin.news.create.success'));
     }
 
     /**
@@ -95,11 +95,11 @@ class NewsController extends Controller
         $status = $news->fill($request->validated())->save();
 
         if(!$status) {
-            return back()->with('error', 'Не удалось обновит запись');
+            return back()->with('error', __('messages.admin.news.update.fail'));
         }
 
         return redirect()->route('admin.news.index')
-            ->with('success', 'Запись была успешно обновлена!');
+            ->with('success', __('messages.admin.news.update.success'));
     }
 
     /**
