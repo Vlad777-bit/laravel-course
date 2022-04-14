@@ -10,12 +10,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        html,body {
+            position:relative;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
             -webkit-user-select: none;
             -moz-user-select: none;
             user-select: none;
+        }
+
+        main {
+            min-height: 100vh;
+            padding-bottom: 124px;
         }
 
         @media (min-width: 768px) {
@@ -37,9 +46,9 @@
 
     @yield('content')
 
-    <x-main.footer />
-
 </main>
+
+<x-main.footer />
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

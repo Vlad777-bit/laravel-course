@@ -35,11 +35,6 @@ class NewsTest extends TestCase
         $response->assertViewHas('newsList', $value = null);
     }
 
-//    private function getNewsList(): array
-//    {
-//        return News::select('id')->all();
-//    }
-
     private function getCategoriesList(): array
     {
         return Category::select('id')->get()->toArray();

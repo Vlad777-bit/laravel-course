@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('welcome') }}">TrueNews</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -20,18 +21,14 @@
                     }}">О сайте</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('offer.index')) active @endif" href="{{ route('offer.index')}}">
-                        Предложить
-                        новость
+                    <a class="nav-link @if(request()->routeIs('offer.index')) active @endif"
+                       href="{{ route('offer.index')}}">
+                        Предложить новость
                     </a>
                 </li>
             </ul>
 
-
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Искать новость" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Поиск</button>
-            </form>
+            <x-ui.dropDown />
         </div>
     </div>
 </nav>

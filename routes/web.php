@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\WelcomeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\Account\IndexController;
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
@@ -45,9 +47,26 @@ Route::resource('offer', OfferController::class);
 Route::get('/about', [AboutController::class, "index"])
     ->name('about');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', AdminIndexController::class)
-        ->name('index');
-    Route::resource('categories', AdminCategoryController::class);
-    Route::resource('news', AdminNewsController::class);
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
+
+        Route::get('/', IndexController::class)
+            ->name('index');
+
+        Route::get('/logout', function() {
+            Auth::logout();
+            return redirect()->route('login');
+        })->name('logout');
+    });
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.check'], function () {
+        Route::get('/', AdminIndexController::class)
+            ->name('index');
+        Route::resource('categories', AdminCategoryController::class);
+        Route::resource('news', AdminNewsController::class);
+    });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
