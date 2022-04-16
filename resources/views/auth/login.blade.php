@@ -15,6 +15,9 @@
             <div class="card">
                 <div class="card-header">{{ __('Вход') }}</div>
 
+                <a href="{{ route('auth.redirect', ['social' => 'vkontakte']) }}">Войти через ВК</a>
+                <a href="{{ route('auth.redirect', ['social' => 'github']) }}">Войти через GitHub</a>
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
