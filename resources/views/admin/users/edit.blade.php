@@ -19,6 +19,7 @@
                 method="POST"
                 route="{{ route('admin.users.update', ['user' => $user]) }}"
                 custom-method="PUT"
+                enctype=""
             >
                 <x-ui.select
                     name="is_admin"

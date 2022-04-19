@@ -3,7 +3,7 @@
 @section('title') Редактировать запись | @parent @endsection
 
 @section('menu')
-    <x-admin.sidebar />
+    <x-admin.sidebar/>
 @endsection
 
 @section('content')
@@ -19,6 +19,7 @@
                 method="POST"
                 route="{{ route('admin.news.update', ['news' => $news]) }}"
                 custom-method="PUT"
+                enctype="multipart/form-data"
             >
                 <x-ui.select
                     name="category_id"
@@ -84,3 +85,14 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush

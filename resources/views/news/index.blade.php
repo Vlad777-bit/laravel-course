@@ -27,7 +27,7 @@
                     <div class="col">
                         <div class="card shadow-sm">
                             <img
-                                src="{{ $news->image }}"
+                                src="{{ Storage::disk('public')->url($news->image) }}"
                                 class="img-fluid"
                                 style="height: 26vh"
                                 alt="{{ $news->title}}"

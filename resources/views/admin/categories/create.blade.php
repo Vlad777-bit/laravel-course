@@ -19,6 +19,7 @@
                 method="POST"
                 route="{{ route('admin.categories.store') }}"
                 custom-method=""
+                enctype=""
             >
                 <x-ui.input
                     name="title"

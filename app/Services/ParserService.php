@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Contracts\IParser;
 
+use Illuminate\Support\Facades\Storage;
 use Orchestra\Parser\Xml\Facade as Parser;
+
 
 class ParserService implements IParser
 {
@@ -22,13 +24,13 @@ class ParserService implements IParser
     }
 
     /**
-     * @return array
+     * @return void
      */
-    public function getNews(): array
+    public function saveNews(): void
     {
         $xml = Parser::load($this->url);
 
-        return $xml->parse([
+        $parsedNews = $xml->parse([
             'title' => [
                 'uses' => 'channel.title'
             ],
@@ -46,8 +48,14 @@ class ParserService implements IParser
             ],
 
             'news' => [
-                'uses' => 'channel.item[title, link, guid, description, pubDate]'
+                'uses' => 'channel.item[title,link,guid,description,pubDate]'
             ]
         ]);
+
+        $json = json_encode($parsedNews);
+        $e = explode("/", $this->url);
+        $fileName = end($e);
+
+        Storage::append('news/' . $fileName, $json);
     }
 }

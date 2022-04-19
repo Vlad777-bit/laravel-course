@@ -17,6 +17,7 @@ class Form extends Component
         public string $method,
         public string $route,
         public string $customMethod,
+        public string $enctype,
     )
     {}
 

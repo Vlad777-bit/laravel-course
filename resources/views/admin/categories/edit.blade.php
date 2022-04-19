@@ -19,6 +19,7 @@
                 method="POST"
                 route="{{ route('admin.categories.update', ['category' => $category->id]) }}"
                 custom-method="PUT"
+                enctype=""
             >
 
                 <x-ui.input

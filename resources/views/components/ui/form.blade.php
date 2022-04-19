@@ -1,4 +1,4 @@
-<form method="{{ $method }}" action="{{ $route }}">
+<form method="{{ $method }}" action="{{ $route }}", enctype="{{ $enctype }}">
 
     @csrf
     @method("$customMethod")

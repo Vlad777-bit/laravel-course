@@ -19,6 +19,7 @@
                 method="POST"
                 route="{{ route('admin.news.store') }}"
                 custom-method=""
+                enctype="multipart/form-data"
             >
 
                 <x-ui.select

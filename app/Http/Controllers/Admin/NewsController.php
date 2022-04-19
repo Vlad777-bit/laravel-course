@@ -9,6 +9,7 @@ use App\Http\Requests\News\EditRequest;
 use App\Models\Category;
 use App\Models\News;
 
+use App\Services\UploadService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -94,7 +95,14 @@ class NewsController extends Controller
      */
     public function update(EditRequest $request, News $news): RedirectResponse
     {
-        $status = $news->fill($request->validated())->save();
+        $validatedData = $request->validated();
+
+        if($request->hasFile('image')) {
+            $service = app(UploadService::class);
+            $validatedData['image'] = $service->uploadFile($request->file('image'));
+        }
+
+        $status = $news->fill($validatedData)->save();
 
         if(!$status) {
             return back()->with('error', __('messages.admin.news.update.fail'));

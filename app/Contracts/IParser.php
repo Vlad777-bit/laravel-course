@@ -11,7 +11,7 @@ interface IParser
     function setUrl(string $url): self;
 
     /**
-     * @return array
+     * @return void
      */
-    function getNews(): array;
+    function saveNews(): void;
 }

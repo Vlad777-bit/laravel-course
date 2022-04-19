@@ -6,6 +6,7 @@ use App\Contracts\IParser;
 use App\Contracts\ISocialNetwork;
 use App\Services\ParserService;
 use App\Services\SocialNetworkService;
+use App\Services\UploadService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(IParser::class, ParserService::class);
         $this->app->bind(ISocialNetwork::class, SocialNetworkService::class);
+        $this->app->bind(UploadService::class);
     }
 
     /**

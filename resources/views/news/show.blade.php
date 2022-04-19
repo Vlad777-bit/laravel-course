@@ -26,7 +26,7 @@
             @foreach($news as $n)
                 <img src="{{ $n->image }}" class="img-fluid" alt="{{ $n->title }}">
                 <p class="text-start fs-2 fw-light">
-                    {{ $n->description }}
+                    {!! $n->description !!}
                 </p>
             @endforeach
         </div>
