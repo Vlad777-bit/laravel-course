@@ -18,6 +18,7 @@
             method="POST"
             route="{{ route('offer.store') }}"
             custom-method=""
+            enctype=""
         >
             <x-ui.input
                 name="userName"

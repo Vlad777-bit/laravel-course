@@ -34,6 +34,7 @@
             method="GET"
             route=""
             custom-method=""
+            enctype=""
         >
 
             <x-ui.input
