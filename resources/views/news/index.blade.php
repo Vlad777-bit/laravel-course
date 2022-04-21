@@ -7,7 +7,7 @@
         title="{{ $category[0]->title }}"
     >
         <p class="lead text-muted">
-            {{ $category[0]->description }}
+            {!! $category[0]->description !!}
         </p>
     </x-main.greeting>
 @endsection

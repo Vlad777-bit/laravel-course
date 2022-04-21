@@ -14,7 +14,7 @@
             @forelse($categoriesList as $category)
                     <div class="col-lg-4">
                         <h2>{{ $category->title }}</h2>
-                        <p>{{ $category->description }}</p>
+                        <p>{!! $category->description !!}</p>
                         <p>
                             <a
                                 class="btn btn-secondary"

@@ -23,7 +23,7 @@
                     <div class="col">
                         <div class="card shadow-sm">
                             <img
-                                src="{{ $news->image }}"
+                                src="{{ Storage::disk('public')->url($news->image) }}"
                                 class="img-fluid"
                                 style="height: 26vh"
                                 alt="{{ $news->title}}"
@@ -31,7 +31,7 @@
 
                             <div class="card-body">
                                 <p class="card-text">
-                                    {{ $news->description }}
+                                    {!! $news->description !!}
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
