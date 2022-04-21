@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('https://pilsnab-a.by/wp-content/uploads/2018/12/emrty-300x300.png');
         });
     }
 
