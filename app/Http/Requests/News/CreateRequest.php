@@ -24,7 +24,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => ['required', 'integer', 'exists:News'],
+            'category_id' => ['required', 'integer'],
             'title'       => ['required', 'string', 'min:5', 'max:30'],
             'author'      => ['required', 'string'],
             'image'       => ['nullable', 'image', 'mimes:jpg,png,jpeg'],
