@@ -1,5 +1,4 @@
-<div class="alert alert-{{ $type }} alert-white rounded">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <div class="icon"><i class="fa {{ $icon }}"></i></div>
-    <strong>{{ $type }}!</strong> {{ $message }}
+<div class="alert alert-{{ $type }}">
+    {{ $message }}
+    <button type="button" style="float:right;" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>

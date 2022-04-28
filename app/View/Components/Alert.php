@@ -6,6 +6,7 @@ namespace App\View\Components;
 
 use http\Encoding\Stream;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class Alert extends Component
 {
@@ -17,15 +18,14 @@ class Alert extends Component
     public function __construct(
         public string $type,
         public string $message,
-        public string $icon,
     ) {}
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
         return view('components.alert');
     }

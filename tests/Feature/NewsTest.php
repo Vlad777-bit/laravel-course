@@ -2,9 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Category;
 use Tests\TestCase;
 
 class NewsTest extends TestCase
@@ -16,9 +14,10 @@ class NewsTest extends TestCase
      */
     public function test_the_news_returns_a_successful_response(): void
     {
-        $newsList = $this->getCategoriesList();
+        $categoriesList = $this->getCategoriesList();
+        $rndCategory = implode(' ', $categoriesList[mt_rand(0, count($categoriesList) - 1)]);
 
-        $response = $this->get("/news/" . $newsList[mt_rand(0, count($newsList))]);
+        $response = $this->get("/news/" . $rndCategory);
         $response->assertStatus(200);
     }
 
@@ -29,14 +28,15 @@ class NewsTest extends TestCase
      */
     public function test_the_loading_of_news(): void
     {
-        $newsList = $this->getCategoriesList();
+        $categoriesList = $this->getCategoriesList();
+        $rndCategory = implode(' ', $categoriesList[mt_rand(0, count($categoriesList) - 1)]);
 
-        $response = $this->get("/news/" . $newsList[mt_rand(1, count($newsList))]);
+        $response = $this->get("/news/" . $rndCategory);
         $response->assertViewHas('newsList', $value = null);
     }
 
     private function getCategoriesList(): array
     {
-        return Controller::getCategories();
+        return Category::select('id')->get()->toArray();
     }
 }

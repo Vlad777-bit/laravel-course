@@ -2,40 +2,65 @@
 
 @section('title') О сайте | @parent @endsection
 
-@section('sidebar')
-    <x-main.sidebar>
-        <h1 class="brand-title">О сайте</h1>
-        <h2 class="brand-tagline">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem rem.
-        </h2>
-    </x-main.sidebar>
+@section('greeting')
+
 @endsection
 
 @section('content')
-    @foreach($commentsList as $comment)
-        <div class="posts">
-            <section class="post">
-                <header class="post-header">
-                    <img width="48" height="48" alt="{{ $comment['author'] }} avatar" class="post-avatar"
-                         src="{{ $comment['img'] }}">
-
-                    <p class="post-meta">
-                        By <a href="#" class="post-author">{{ $comment['author'] }}</a>
-                    </p>
-                </header>
-
-                <div class="post-description">
+    <div class="container px-4 py-5 mt-5" id="featured-3">
+        <h2 class="pb-2 border-bottom">Отзывы</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            @foreach($commentsList as $comment)
+                <div class="feature col">
+                    <div style="width: 7em; height: 7em">
+                        <img src="{{ $comment->image }}" class="rounded-circle w-100" alt="{{ $comment->author }}">
+                    </div>
+                    <h2>Featured title</h2>
                     <p>
-                        {{ $comment['comment'] }}
+                        {{ $comment->comment }}
                     </p>
+                    <span>Автор:
+                        <a href="#" class="icon-link">
+                            {{ $comment->author }}
+                        </a>
+                    </span>
+
                 </div>
-            </section>
+            @endforeach
         </div>
-    @endforeach
+        <h2>Оставьте отзыв о работе нашего сайта ;)</h2>
+
+        <x-ui.form
+            method="GET"
+            route=""
+            custom-method=""
+            enctype=""
+        >
+
+            <x-ui.input
+                name="userName"
+                title="Имя"
+                type="text"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.textarea
+                name="comment"
+                title="Комментарий"
+            />
 
 
-    <div>
-        <h2 class="post-title">Оставьте отзыв о работе нашего сайта ;)</h2>
-        <x-main.about.form />
+            <x-slot:button>
+                <x-ui.button
+                    type="submit"
+                    cssClass="btn-outline-primary"
+                >
+                    Отправить
+                </x-ui.button>
+            </x-slot:button>
+
+        </x-ui.form>
     </div>
 @endsection

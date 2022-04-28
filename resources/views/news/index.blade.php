@@ -1,62 +1,61 @@
 @extends('layouts/main')
 
-@section('title') {{$newsList[0]['category']}} | @parent @endsection
+@section('title') {{ $category[0]->title }} | @parent @endsection
 
-@section('sidebar')
-    <x-main.sidebar>
-        <h1 class="brand-title">{{$newsList[0]['category']}}</h1>
-        <h2 class="brand-tagline">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem rem.
-        </h2>
-    </x-main.sidebar>
+@section('greeting')
+    <x-main.greeting
+        title="{{ $category[0]->title }}"
+    >
+        <p class="lead text-muted">
+            {!! $category[0]->description !!}
+        </p>
+    </x-main.greeting>
 @endsection
 
 @section('content')
-    @foreach($newsList as $news)
+    <div class="album py-5 bg-light">
+        <div class="container">
 
-        @php
-            $route = route('news.show', ['category' => $news['category'], 'id' => $news['id']]);
-        @endphp
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        <div class="posts">
+                @forelse($newsList as $news)
 
-            <section class="post">
-                <header class="post-header">
-                    <h2 class="post-title">
-                        <a href="{{ $route }}">
-                            {{ $news['title'] }}
-                        </a>
-                    </h2>
+                    @php
+                        $route = route('news.show', ['id' => $news->id, 'category' => $news->category_id]);
+                    @endphp
 
-                    <x-main.news.post-meta
-                        :author="$news['author']"
-                        :status="$news['status']"
-                    />
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img
+                                src="{{ Storage::disk('public')->url($news->image) }}"
+                                class="img-fluid"
+                                style="height: 26vh"
+                                alt="{{ $news->title}}"
+                            />
 
-                </header>
-
-                <div class="post-description">
-                    <div class="post-images pure-g">
-                        <div class="pure-u-1">
-                            <a href="{{ $route }}">
-                                <img alt="Photo of someone working poolside at a resort"
-                                     class="pure-img-responsive"
-                                     src="{{ $news['img'] }}"
-                                >
-                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {{ $news->title }}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ $route }}" type="button" class="btn btn-sm
+                                        btn-outline-secondary">
+                                            Посмотреть &raquo;
+                                        </a>
+                                    </div>
+                                    <small class="text-muted">{{ $news->created_at }}</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <p>
-                        {{ $news['description'] }}
-                    </p>
+                @empty
 
-                    <div class="pure-button-right">
-                        <a href="{{ $route }}" class="pure-button">
-                            Подробнее
-                        </a>
-                    </div>
-                </div>
-            </section>
+                    <h2 class="mt-5">Новостей пока нет</h2>
+
+                @endforelse
+
+            </div>
         </div>
-    @endforeach
+    </div>
 @endsection

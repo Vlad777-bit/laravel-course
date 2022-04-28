@@ -2,22 +2,64 @@
 
 @section('title') Предложение | @parent @endsection
 
-@section('sidebar')
-    <x-main.sidebar>
-        <h1 class="brand-title">Предложите нам новость</h1>
-        <h2 class="brand-tagline">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem rem.
-        </h2>
-    </x-main.sidebar>
+@section('greeting')
+    <x-main.greeting
+        title="Предложите нам свою новость"
+    />
 @endsection
 
 @section('content')
-    <div>
-        <h2 class="post-title">Предложите новость</h2>
-        @if(isset($success_response))
-            <x-alert type="success" message="Мы посмотрим ваше предложение!" icon="fa-check"/>
-        @endif
-        <x-main.offer.form />
+    <div class="container px-4 py-5 mt-5" id="featured-3">
+        <h2>Предложите новость</h2>
+
+        @include('inc.messages')
+
+        <x-ui.form
+            method="POST"
+            route="{{ route('offer.store') }}"
+            custom-method=""
+            enctype=""
+        >
+            <x-ui.input
+                name="userName"
+                title="Имя"
+                type="text"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.input
+                name="userPhone"
+                title="Телефон"
+                type="tel"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.input
+                name="userEmail"
+                title="Почта"
+                type="email"
+                value=""
+            />
+
+            <br>
+
+            <x-ui.textarea
+                name="description"
+                title="О чём бы вы хотели написать?"
+            />
+
+            <x-slot:button>
+                <x-ui.button
+                    type="submit"
+                    cssClass="btn-outline-primary"
+                >
+                    Отправить
+                </x-ui.button>
+            </x-slot:button>
+        </x-ui.form>
     </div>
 @endsection
-

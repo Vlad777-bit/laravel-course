@@ -1,51 +1,30 @@
-<div id="menu">
-    <div class="pure-menu">
-        <a class="pure-menu-heading" href="{{ route('welcome') }}">TrueNews</a>
-
-        <ul class="pure-menu-list">
-            <li
-                class="pure-menu-item
-                    @if(request()->routeIs('admin.index'))
-                            menu-item-divided pure-menu-selected
-                    @endif"
-            >
-                <a href="{{ route('admin.index') }}" class="pure-menu-link">
-                    Панель
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.index')) active @endif" aria-current="page" href="{{ route('admin.index') }}">
+                    <span data-feather="home"></span>
+                    Главная
                 </a>
             </li>
-
-            <li
-                class="pure-menu-item
-                    @if(request()->routeIs('admin.news.*'))
-                        menu-item-divided pure-menu-selected
-                    @endif"
-            >
-                <a href="{{ route('admin.news.index') }}" class="pure-menu-link">
-                    Новости
-                </a>
-            </li>
-
-            <li
-                class="pure-menu-item
-                    @if(request()->routeIs('admin.categories.*'))
-                        menu-item-divided pure-menu-selected
-                    @endif"
-            >
-                <a href="{{ route('admin.categories.index') }}" class="pure-menu-link">
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.categories.*')) active @endif" href="{{ route('admin.categories.index') }}">
+                    <span data-feather="file"></span>
                     Категории
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{ route('admin.news.index') }}">
+                    <span data-feather="list"></span>
+                    Новости
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->routeIs('admin.users.*')) active @endif" href="{{ route('admin.users.index') }}">
+                    <span data-feather="user"></span>
+                    Пользователи
+                </a>
+            </li>
         </ul>
     </div>
-
-    <div class="pure-menu">
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item">
-                {{ $slot }}
-            </li>
-            <li class="pure-menu-item">
-                <a href="#about" class="pure-menu-link">Выход</a>
-            </li>
-        </ul>
-    </div>
-</div>
+</nav>

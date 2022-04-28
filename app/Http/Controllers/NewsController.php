@@ -4,22 +4,26 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class NewsController extends Controller
 {
-    public function index(string $category): View
+    public function index(int $categoryId): View
     {
         return view('news.index', [
-            'newsList' => $this->getNews(null, $category),
+            'newsList' => News::where('category_id', '=', $categoryId)->where('status', '=', 'ACTIVE')->get(),
+            'category' => Category::select('id', 'title','description')->where('id', '=', $categoryId)->get()
         ]);
     }
 
-    public function show(string $category, int $id): View
+    public function show(int $id): View
     {
         return view('news.show', [
-            'news' => $this->getNews($id, $category),
+            'news' => News::where('id', '=', $id)->get(),
         ]);
     }
 }
